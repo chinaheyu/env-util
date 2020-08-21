@@ -1,5 +1,19 @@
 #!/bin/bash
 
+download_models(){
+    echo -e "\033[36m开始下载Gazebo模型"
+    echo "正在安装git..."
+    sudo apt-get -y install git >> /dev/null 2>&1
+    echo "正在下载Gazebo模型(需要较长时间)..."
+    if [ ! -d ~/.gazebo ]
+    then
+        mkdir ~/.gazebo
+    fi
+    cd ~/.gazebo/
+    git clone https://gitee.com/chinaheyu/gazebo_models.git models >> /dev/null 2>&1
+    echo -e "下载完成\033[0m"
+}
+
 echo -e "\033[33m==========================================="
 echo " ____   ___  ____       _         _        "
 echo "|  _ \ / _ \/ ___|     / \  _   _| |_ ___  "
@@ -14,6 +28,34 @@ echo " | || | | \__ \ || (_| | | |  __/ |   "
 echo "|___|_| |_|___/\__\__,_|_|_|\___|_|   "
 echo "                                           "
 echo -e "===========================================\033[0m"
+
+
+if [ ! -z $ROS_DISTRO ]
+then
+    echo -e "检测到已安装的ROS版本: \033[32m${ROS_DISTRO}\033[0m"
+    echo "请选择:"
+    echo "  1.继续安装"
+    echo "  2.下载Gazebo模型"
+    echo "  3.退出"
+    read -p "输入数字1-3：" opt
+    case $opt in
+        1)
+            clear
+            echo -e "\033[33m===========================================\033[0m"
+        ;;
+        2)
+            download_models
+            exit
+        ;;
+        3)
+            exit
+        ;;
+        *)
+            echo "请输入正确的数字"
+            exit
+        ;;
+    esac
+fi
 
 
 code_name=$(lsb_release -sc)
@@ -40,7 +82,7 @@ case $code_name in
     ;;
 esac
 echo -e "对应的ros版本: \033[32m${ros_name}\033[0m"
-echo "==========================================="
+echo -e "\033[33m===========================================\033[0m"
 echo "                                           "
 echo "请选择你希望的安装方式："
 echo "  1.桌面完整版(建议)：包含ROS、rqt、rviz、机器人通用库、2D/3D模拟器、导航以及2D/3D感知包"
@@ -125,13 +167,7 @@ echo -e "\033[33m===========================================\033[0m"
 
 if [ $opt = "1" -a $ros_name = "kinetic" ]
 then
-    echo -e "\033[36m开始下载Gazebo模型"
-    echo "正在安装git..."
-    sudo apt-get -y install git >> /dev/null 2>&1
-    echo "正在下载Gazebo模型(需要较长时间)..."
-    cd ~/.gazebo/
-    git clone https://gitee.com/chinaheyu/gazebo_models.git models >> /dev/null 2>&1
-    echo -e "下载完成\033[0m"
+    download_models
     echo -e "\033[33m===========================================\033[0m"
 fi
 
