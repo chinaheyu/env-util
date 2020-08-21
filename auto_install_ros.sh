@@ -69,7 +69,7 @@ echo "正在设置ROS镜像源..."
 sudo sh -c '. /etc/lsb-release && echo "deb http://mirrors.tuna.tsinghua.edu.cn/ros/ubuntu/ `lsb_release -cs` main" > /etc/apt/sources.list.d/ros-latest.list'
 echo "正在设置公钥..."
 sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
-echo "正在更新源地址..."
+echo "正在更新软件包索引..."
 sudo apt update >> /dev/null
 echo "正在安装ROS..."
 sudo apt -y install $ros_pack_opt
