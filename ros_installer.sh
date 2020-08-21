@@ -63,6 +63,9 @@ case $opt in
     ;;
 esac
 
+clear
+
+echo -e "\033[33m===========================================\033[0m"
 echo -e "\033[36m开始安装${ros_pack_opt}"
 
 echo "正在设置Ubuntu镜像源..."
