@@ -118,3 +118,23 @@ sudo apt-get -y install python-rosinstall python-rosinstall-generator python-wst
 
 echo -e "已成功安装${ros_pack_opt}\033[0m"
 
+echo -e "\033[33m===========================================\033[0m"
+
+if [ $opt = "1" -a $ros_name = "kinetic" ]
+then
+    echo -e "\033[36m开始下载Gazebo模型"
+    echo "正在安装git..."
+    sudo apt-get -y install git >> /dev/null 2>&1
+    echo "正在下载Gazebo模型(需要较长时间)..."
+    cd ~/.gazebo/
+    git clone https://gitee.com/chinaheyu/gazebo_models.git models >> /dev/null 2>&1
+    echo -e "下载完成\033[0m"
+    echo -e "\033[33m===========================================\033[0m"
+fi
+
+
+
+
+
+
+
