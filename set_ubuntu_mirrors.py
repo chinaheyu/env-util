@@ -15,12 +15,15 @@ def set_ubuntu_mirrors():
     mirrors = re.search('<script id="apt-template" type="x-tmpl-markup">(.*?)</script>',response.content.decode('utf-8'),re.DOTALL)[1]
     mirrors = mirrors.replace('{{release_name}}',code_name)
 
+    print('Backup sources list ...')
+    os.system('cp /etc/apt/sources.list /etc/apt/sources.list.backup')
+
     print('Writing sources list ...')
     with open('/etc/apt/sources.list','w') as f:
         f.write(mirrors)
 
     print('update sources list ...')
-    os.system('apt update >> /dev/null')
+    os.system('apt update >> /dev/null 2>&1')
 
     print('finished!')
 
