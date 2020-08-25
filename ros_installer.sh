@@ -1,5 +1,7 @@
 #!/bin/bash
 
+clear
+
 download_models(){
     echo -e "\033[36m开始下载Gazebo模型"
     echo "正在安装git..."
