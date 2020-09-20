@@ -4,8 +4,18 @@ ros_installer工具支持Noetic、Melodic、Kinetic版本的ros安装，安装�
 
 示例：使用ros_installer安装ROS
 ```bash
-curl -fsSL https://raw.githubusercontent.com/chinaheyu/env-util/master/ros_installer.sh|bash
+wget https://raw.githubusercontent.com/chinaheyu/env-util/master/ros_installer.sh
+bash ros_installer.sh
+rm ros_installer.sh
 ```
+
+国内：
+```bash
+wget https://gitee.com/chinaheyu/env-util/raw/master/ros_installer.sh
+bash ros_installer.sh
+rm ros_installer.sh
+```
+
 
 注意：
 - 设置Ubuntu镜像源与设置GitHub的hosts文件这两个python脚本需要管理员权限运行
