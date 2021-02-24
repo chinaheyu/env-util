@@ -8,7 +8,7 @@ import sys
 def set_ubuntu_mirrors():
     with os.popen('lsb_release -sc','r') as f:
         code_name = f.read().rstrip('\n')
-    print(f'Ubuntu Codename: {code_name}')
+    print('Ubuntu Codename: {}'.format(code_name))
 
     print('Getting sources list ...')
     response = requests.get('https://mirror.tuna.tsinghua.edu.cn/help/ubuntu/')
